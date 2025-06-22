@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('dokters', function (Blueprint $table) {
             $table->id();
+            $table->foreign('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('nama');
+            $table->string('alamat');
+            $table->string('no_hp');
+            $table->foreignId('id_poli')->constrained('polis')->onDelete('cascade');
             $table->timestamps();
         });
     }
