@@ -12,3 +12,9 @@ Route::get('/', function () {
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Admin Routes
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+})->name('dashboardAdmin');
