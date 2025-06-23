@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('daftar_polis', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id_pasien')->constrained('pasien')->onDelete('cascade');
-            $table->foreignId('id_jadwal_periksa')->constrained('jadwal_periksas')->onDelete('cascade');
+            $table->foreignId('id_pasien')->constrained('pasiens')->onDelete('cascade');
+            $table->foreignId('jadwal_periksa_id')->constrained('jadwal_periksas')->onDelete('cascade');
             $table->text('keluhan')->nullable();
             $table->integer('no_antrian');
             $table->timestamps();
