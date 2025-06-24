@@ -22,7 +22,7 @@
         <tbody>
           @foreach($dokters as $dokter)
           <tr>
-            <td>{{ $dokter->nama }}</td>
+            <td>{{ "dr." . $dokter->nama }}</td>
             <td>{{ $dokter->poli->nama ?? '-' }}</td>
             <td>{{ $dokter->alamat }}</td>
             <td>{{ $dokter->no_hp }}</td>

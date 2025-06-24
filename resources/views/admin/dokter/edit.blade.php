@@ -28,6 +28,7 @@
           </select>
         </div>
         <button class="btn btn-success">Update</button>
+        <a href="{{ route('admin.dokter') }}" class="btn btn-secondary">Kembali</a>
       </form>
     </div>
   </section>

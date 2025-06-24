@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasien;
+use App\Models\Dokter;
+use App\Models\Poli;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 class AdminController extends Controller
 {
-    //Admin Controller
-    public function index(Request $request)
+    // ================= PASIEN ================= //
+
+    public function pasienIndex(Request $request)
     {
         $keyword = $request->input('keyword');
 
@@ -27,13 +30,12 @@ class AdminController extends Controller
         return view('admin.pasien.index', compact('pasiens', 'keyword'));
     }
 
-
-    public function create()
+    public function pasienCreate()
     {
         return view('admin.pasien.create');
     }
 
-    public function store(Request $request)
+    public function pasienStore(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -59,13 +61,7 @@ class AdminController extends Controller
             ->orderByDesc('no_rm')
             ->first();
 
-        if ($lastPasien) {
-            $lastNumber = (int) explode('-', $lastPasien->no_rm)[1];
-            $newNumber = $lastNumber + 1;
-        } else {
-            $newNumber = 1;
-        }
-
+        $newNumber = $lastPasien ? ((int) explode('-', $lastPasien->no_rm)[1] + 1) : 1;
         $no_rm = $prefix . '-' . $newNumber;
 
         Pasien::create([
@@ -80,13 +76,13 @@ class AdminController extends Controller
         return redirect()->route('admin.pasien')->with('success', 'Pasien berhasil ditambahkan.');
     }
 
-    public function edit($id)
+    public function pasienEdit($id)
     {
         $pasien = Pasien::with('user')->findOrFail($id);
         return view('admin.pasien.edit', compact('pasien'));
     }
 
-    public function update(Request $request, $id)
+    public function pasienUpdate(Request $request, $id)
     {
         $pasien = Pasien::findOrFail($id);
         $user = $pasien->user;
@@ -98,10 +94,7 @@ class AdminController extends Controller
             'no_hp' => 'required|unique:pasiens,no_hp,' . $id,
         ]);
 
-        $user->update([
-            'name' => $request->nama,
-        ]);
-
+        $user->update(['name' => $request->nama]);
         $pasien->update([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
@@ -112,12 +105,92 @@ class AdminController extends Controller
         return redirect()->route('admin.pasien')->with('success', 'Pasien berhasil diupdate.');
     }
 
-    public function destroy($id)
+    public function pasienDestroy($id)
     {
         $pasien = Pasien::findOrFail($id);
         $pasien->user->delete();
         $pasien->delete();
 
         return redirect()->route('admin.pasien')->with('success', 'Pasien berhasil dihapus.');
+    }
+
+    // ================= DOKTER ================= //
+
+    public function dokterIndex()
+    {
+        $dokters = Dokter::with(['poli', 'user'])
+            ->whereHas('user', fn($q) => $q->where('role', 'dokter'))
+            ->get();
+
+        return view('admin.dokter.index', compact('dokters'));
+    }
+
+    public function dokterCreate()
+    {
+        $polis = Poli::all();
+        return view('admin.dokter.create', compact('polis'));
+    }
+
+    public function dokterStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required|unique:dokters,no_hp',
+            'id_poli' => 'required|exists:polis,id',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'dokter',
+        ]);
+
+        Dokter::create([
+            'user_id' => $user->id,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'id_poli' => $request->id_poli,
+        ]);
+
+        return redirect()->route('admin.dokter')->with('success', 'Dokter berhasil ditambahkan.');
+    }
+
+    public function dokterEdit(Dokter $dokter)
+    {
+        $polis = Poli::all();
+        return view('admin.dokter.edit', compact('dokter', 'polis'));
+    }
+
+    public function dokterUpdate(Request $request, Dokter $dokter)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required|unique:dokters,no_hp,' . $dokter->id,
+            'id_poli' => 'required|exists:polis,id',
+        ]);
+
+        $dokter->update([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'id_poli' => $request->id_poli,
+        ]);
+
+        return redirect()->route('admin.dokter')->with('success', 'Dokter berhasil diupdate.');
+    }
+
+    public function dokterDestroy(Dokter $dokter)
+    {
+        $dokter->user->delete();
+        $dokter->delete();
+
+        return redirect()->route('admin.dokter')->with('success', 'Dokter berhasil dihapus.');
     }
 }
