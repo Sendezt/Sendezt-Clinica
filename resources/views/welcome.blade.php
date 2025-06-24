@@ -62,24 +62,38 @@
     <!-- Header/Navbar -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    
+            <!-- Kiri: Logo dan Judul -->
             <div class="flex items-center">
                 <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-3">
                     <i class="fas fa-heartbeat text-blue-500 text-xl"></i>
                 </div>
-                <h1 class="text-xl font-bold text-blue-600">Klinik Sehat<span class="text-emerald-500">Digital</span></h1>
-            </div>
-            <nav class="hidden md:flex space-x-8">
+                <h1 class="text-xl font-bold text-blue-600">
+                Klinik Sehat<span class="text-emerald-500">Digital</span>
+            </h1>
+        </div>
+    <!-- Tengah + Kanan: Navigasi dan Login -->
+        <div class="hidden md:flex items-center space-x-8">
+            <nav class="flex space-x-8">
                 <a href="#" class="font-medium text-blue-600 hover:text-blue-800">Beranda</a>
                 <a href="#" class="font-medium text-gray-600 hover:text-blue-600">Layanan</a>
                 <a href="#" class="font-medium text-gray-600 hover:text-blue-600">Dokter</a>
                 <a href="#" class="font-medium text-gray-600 hover:text-blue-600">Tentang Kami</a>
                 <a href="#" class="font-medium text-gray-600 hover:text-blue-600">Kontak</a>
             </nav>
-            <button class="md:hidden text-gray-600">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+            <!-- Tombol Login -->
+            <a href="/login" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                Login
+            </a>
         </div>
-    </header>
+
+        <!-- Tombol Hamburger untuk Mobile -->
+        <button class="md:hidden text-gray-600">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </div>
+</header>
+
 
     <!-- Hero Section -->
     <section class="hero-gradient py-16 md:py-24">

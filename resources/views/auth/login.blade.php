@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HealthCare Login</title>
+  <title>Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
@@ -19,10 +19,12 @@
   <div class="w-full max-w-md">
     <!-- Logo dan Header -->
     <div class="text-center mb-8">
-      <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-        <i class="fas fa-heartbeat text-white text-3xl"></i>
-      </div>
-      <h1 class="text-3xl font-bold text-gray-800">HealthCare<span class="text-blue-600">+</span></h1>
+      <a href="/" class="inline-block text-center hover:opacity-80 transition duration-200">
+        <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <i class="fas fa-heartbeat text-white text-3xl"></i>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-800">Sendezt<span class="text-blue-600">Clinica</span></h1>
+      </a>
       <p class="text-gray-600 mt-2">Sign in to access your medical services</p>
     </div>
 
