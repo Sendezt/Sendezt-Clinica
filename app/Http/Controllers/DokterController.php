@@ -10,7 +10,11 @@ class DokterController extends Controller
 {
     public function index()
     {
-        $dokters = Dokter::with('poli')->get();
+        $dokters = Dokter::with(['poli', 'user'])
+            ->whereHas('user', function ($query) {
+                $query->where('role', 'dokter');
+            })
+            ->get();
         return view('admin.dokter.index', compact('dokters'));
     }
 
@@ -23,7 +27,7 @@ class DokterController extends Controller
     public function store(Request $request)
     {
         Dokter::create([
-            'user_id' => 5,
+            'user_id' => $request->user_id, // Assuming user_id is passed from the form
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,

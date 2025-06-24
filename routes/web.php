@@ -23,10 +23,12 @@ Route::get('/', function () {
 // ===================
 
 // -------- ADMIN --------
-Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('dashboardAdmin');
-
-    Route::resource('dokter', DokterController::class); // /admin/dokter
-});
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard')->middleware('auth', 'role:admin');
+Route::get('/admin/dokter', [DokterController::class, 'index'])->name('admin.dokter')->middleware('auth', 'role:admin');
+Route::get('/admin/dokter/create', [DokterController::class, 'create'])->name('admin.dokter.create')->middleware('auth', 'role:admin');
+Route::post('/admin/dokter/store', [DokterController::class, 'store'])->name('admin.dokter.store')->middleware('auth', 'role:admin');
+Route::get('/admin/dokter/edit/{id}', [DokterController::class, 'edit'])->name('admin.dokter.edit')->middleware('auth', 'role:admin');
+Route::put('/admin/dokter/update/{id}', [DokterController::class, 'update'])->name('admin.dokter.update')->middleware('auth', 'role:admin');
+Route::delete('/admin/dokter/delete/{id}', [DokterController::class, 'destroy'])->name('admin.dokter.delete')->middleware('auth', 'role:admin');
