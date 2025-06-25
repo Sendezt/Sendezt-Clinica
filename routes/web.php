@@ -5,9 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\JadwalPeriksaController;
-use App\Http\Controllers\PeriksaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JadwalPeriksaController;
 
 // ===================
 // 🧑‍⚕️ AUTHENTICATION
@@ -78,4 +77,12 @@ Route::middleware(['auth', 'role:dokter'])->group(function () {
     // Edit Profil Dokter
     Route::get('/dokter/profil/edit', [ProfileController::class, 'edit'])->name('dokter.profil.edit');
     Route::put('/dokter/profil/update', [ProfileController::class, 'update'])->name('dokter.profil.update');
+
+    // Jadwal Periksa
+    Route::get('/dokter/jadwal', [JadwalPeriksaController::class, 'index'])->name('jadwal.index');
+    Route::get('/dokter/jadwal/create', [JadwalPeriksaController::class, 'create'])->name('jadwal.create');
+    Route::post('/dokter/jadwal/store', [JadwalPeriksaController::class, 'store'])->name('jadwal.store');
+    Route::get('/dokter/jadwal/edit/{id}', [JadwalPeriksaController::class, 'edit'])->name('jadwal.edit');
+    Route::put('/dokter/jadwal/update/{id}', [JadwalPeriksaController::class, 'update'])->name('jadwal.update');
+    Route::delete('/dokter/jadwal/delete/{id}', [JadwalPeriksaController::class, 'destroy'])->name('jadwal.delete');
 });
