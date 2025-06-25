@@ -23,13 +23,14 @@ class PeriksaController extends Controller
             'Friday' => 'Jumat',
             'Saturday' => 'Sabtu',
         ];
-        $hariIni = now()->format('l'); // Senin, Selasa, ...
-        $hariDB = $hariIndo[$hariIni] ?? $hariIni; // Senin, Selasa, ...
+
+        $hariIni = now()->format('l'); // contoh: "Wednesday"
+        $hariDB = $hariIndo[$hariIni] ?? $hariIni; // hasil: "Rabu"
 
         $dokter = Auth::user()->dokter;
-        $jadwal = $dokter->jadwalPeriksa()->where('hari', $hariIni)->pluck('id');
+        $jadwal = $dokter->jadwalPeriksa()->where('hari', $hariDB)->pluck('id');
 
-        $daftarPasien = DaftarPoli::with('pasien.user')
+        $daftarPasien = DaftarPoli::with(['pasien', 'pasien.user'])
             ->whereIn('jadwal_periksa_id', $jadwal)
             ->where('status', 'belum')
             ->get();
@@ -37,7 +38,7 @@ class PeriksaController extends Controller
         return view('dokter.periksa.index', compact('daftarPasien'));
     }
 
-    public function form($id)
+    public function show($id)
     {
         $poli = DaftarPoli::with('pasien.user')->findOrFail($id);
         $obats = Obat::all();

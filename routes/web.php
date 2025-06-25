@@ -89,6 +89,6 @@ Route::middleware(['auth', 'role:dokter'])->group(function () {
 
     // Periksa Pasien
     Route::get('/dokter/periksa', [PeriksaController::class, 'index'])->name('periksa.index');
-    Route::get('/dokter/periksa/{id}', [PeriksaController::class, 'form'])->name('periksa.form');
+    Route::get('/dokter/periksa/{id}', [PeriksaController::class, 'show'])->name('periksa.show');
     Route::post('/dokter/periksa/store', [PeriksaController::class, 'store'])->name('periksa.store');
 });
