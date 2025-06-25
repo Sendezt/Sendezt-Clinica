@@ -14,31 +14,50 @@
         <div class="alert alert-success">{{ session('success') }}</div>
       @endif
 
-      <div class="card">
+      <!-- Informasi Pasien -->
+      <div class="card mb-4">
         <div class="card-header bg-info">
-          <h5 class="card-title">Form Pendaftaran ke Poli</h5>
+          <h5 class="card-title">Informasi Pasien</h5>
         </div>
         <div class="card-body">
-          <form action="{{ route('pasien.daftar_poli') }}" method="POST">
-            @csrf
-            <div class="form-group">
-              <label for="jadwal_periksa_id">Pilih Jadwal & Poli</label>
-              <select name="jadwal_periksa_id" id="jadwal_periksa_id" class="form-control" required>
-                @foreach ($jadwal as $j)
-                  <option value="{{ $j->id }}">
-                    {{ $j->dokter->poli->nama }} ({{ $j->hari }}, {{ $j->jam_mulai }} - {{ $j->jam_selesai }})
-                  </option>
-                @endforeach
-              </select>
-            </div>
+          <p><strong>Nama:</strong> {{ $pasien->nama }}</p>
+          <p><strong>No. RM:</strong> {{ $pasien->no_rm }}</p>
+          <p><strong>Alamat:</strong> {{ $pasien->alamat }}</p>
+          <p><strong>No. HP:</strong> {{ $pasien->no_hp }}</p>
+        </div>
+      </div>
 
-            <div class="form-group">
-              <label for="keluhan">Keluhan</label>
-              <textarea name="keluhan" id="keluhan" class="form-control" rows="3"></textarea>
-            </div>
+      <!-- Tombol Daftar Poli -->
+      <div class="mb-4">
+        <a href="{{ route('pasien.form_daftar_poli') }}" class="btn btn-primary">Daftar ke Poli</a>
+      </div>
 
-            <button type="submit" class="btn btn-primary">Daftar</button>
-          </form>
+      <!-- Riwayat Pemeriksaan -->
+      <div class="card">
+        <div class="card-header bg-secondary">
+          <h5 class="card-title">Riwayat Pemeriksaan</h5>
+        </div>
+        <div class="card-body">
+          @if($pasien->daftarPoli->isEmpty())
+            <p>Belum ada riwayat pemeriksaan.</p>
+          @else
+            <ul class="list-group">
+              @foreach($pasien->daftarPoli as $daftar)
+                @if($daftar->periksa)
+                  <li class="list-group-item">
+                    <strong>Tanggal:</strong> {{ $daftar->periksa->tanggal_periksa }} <br>
+                    <strong>Catatan:</strong> {{ $daftar->periksa->catatan }} <br>
+                    <strong>Obat:</strong>
+                    <ul>
+                      @foreach($daftar->periksa->detailPeriksa as $detail)
+                        <li>{{ $detail->obat->nama }} ({{'Rp. '. $detail->obat->harga_obat }})</li>
+                      @endforeach
+                    </ul>
+                  </li>
+                @endif
+              @endforeach
+            </ul>
+          @endif
         </div>
       </div>
 

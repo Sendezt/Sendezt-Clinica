@@ -16,9 +16,11 @@ class PasienController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $pasien = Pasien::where('user_id', $user->id)->first();
+        $pasien = Pasien::with(['daftarPoli.periksa.detailPeriksa.obat'])
+            ->where('user_id', Auth::id())
+            ->first();
 
-        $polis =    Poli::all(); // Ambil semua poli
+        $polis = Poli::all();
         $jadwal = JadwalPeriksa::with('dokter.poli')
             ->where('is_active', true)
             ->get();
@@ -51,5 +53,13 @@ class PasienController extends Controller
     {
         $pasien = Pasien::with(['daftarPolis.periksa.detailPeriksas.obat'])->findOrFail($id);
         return view('dokter.pasien.riwayat', compact('pasien'));
+    }
+
+    public function formDaftarPoli()
+    {
+        $pasien = Pasien::where('user_id', Auth::id())->first();
+        $jadwal = JadwalPeriksa::with('dokter.poli')->where('is_active', true)->get();
+
+        return view('pasien.form_daftar_poli', compact('jadwal', 'pasien'));
     }
 }

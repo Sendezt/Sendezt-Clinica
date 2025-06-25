@@ -66,6 +66,7 @@ Route::delete('/admin/obat/delete/{id}', [AdminController::class, 'obatDestroy']
 // ===================
 Route::middleware(['auth', 'role:pasien'])->group(function () {
     Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.dashboard');
+    Route::get('/pasien/daftar-poli', [PasienController::class, 'formDaftarPoli'])->name('pasien.form_daftar_poli');
     Route::post('/pasien/daftar-poli', [PasienController::class, 'daftarPoli'])->name('pasien.daftar_poli');
 });
 

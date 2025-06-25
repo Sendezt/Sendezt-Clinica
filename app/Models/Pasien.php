@@ -18,11 +18,13 @@ class Pasien extends Model
         'no_rm',
     ];
 
-    public function daftarPoli(){
+    public function daftarPoli()
+    {
         return $this->hasMany(DaftarPoli::class, 'id_pasien');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }
