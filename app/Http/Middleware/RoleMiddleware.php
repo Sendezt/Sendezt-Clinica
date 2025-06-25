@@ -20,7 +20,7 @@ class RoleMiddleware
 
         // Check if the user is authenticated
         if ($users->role !== $role) {
-            return response('Anda tidak memiliki akses');
+            abort(403); // return response('Anda tidak memiliki akses');
         }
         return $next($request);
     }
