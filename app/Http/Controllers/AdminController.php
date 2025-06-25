@@ -7,6 +7,8 @@ use App\Models\Pasien;
 use App\Models\Dokter;
 use App\Models\Poli;
 use App\Models\User;
+use App\Models\Obat;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
@@ -243,5 +245,58 @@ class AdminController extends Controller
         $poli->delete();
 
         return redirect()->route('admin.poli')->with('success', 'Poli berhasil dihapus.');
+    }
+
+    // ================= POLI ================= //
+    public function obatIndex()
+    {
+        $obats = Obat::all();
+        return view('admin.obat.index', compact('obats'));
+    }
+
+    public function obatCreate()
+    {
+        return view('admin.obat.create');
+    }
+
+    public function obatStore(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|unique:obats,nama',
+            'kemasan' => 'required',
+            'harga_obat' => 'required|numeric|min:0',
+        ]);
+
+        Obat::create($request->only('nama', 'kemasan', 'harga_obat'));
+
+        return redirect()->route('admin.obat')->with('success', 'Obat berhasil ditambahkan.');
+    }
+
+    public function obatEdit($id)
+    {
+        $obat = Obat::findOrFail($id);
+        return view('admin.obat.edit', compact('obat'));
+    }
+
+    public function obatUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|unique:obats,nama,' . $id,
+            'kemasan' => 'required',
+            'harga_obat' => 'required|numeric|min:0',
+        ]);
+
+        $obat = Obat::findOrFail($id);
+        $obat->update($request->only('nama', 'kemasan', 'harga_obat'));
+
+        return redirect()->route('admin.obat')->with('success', 'Obat berhasil diupdate.');
+    }
+
+    public function obatDestroy($id)
+    {
+        $obat = Obat::findOrFail($id);
+        $obat->delete();
+
+        return redirect()->route('admin.obat')->with('success', 'Obat berhasil dihapus.');
     }
 }

@@ -33,6 +33,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('admin.obat') }}" class="nav-link {{ request()->routeIs('admin.obat') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-user-md"></i>
+            <p>Obat</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="nav-icon fas fa-sign-out-alt"></i><p>Logout</p>
           </a>

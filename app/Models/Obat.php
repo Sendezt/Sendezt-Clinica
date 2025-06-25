@@ -10,9 +10,9 @@ class Obat extends Model
     use HasFactory;
     //Model Obat
     protected $fillable = [
-        'nama_obat',
+        'nama',
         'kemasan',
-        'harga',
+        'harga_obat',
     ];
 
     public function detailPeriksa()

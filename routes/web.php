@@ -21,10 +21,10 @@ Route::get('/', function () {
 });
 
 // ===================
-// 🛡️ MIDDLEWARE PROTECTED ROUTES
+// Admin Routes
 // ===================
 
-// -------- ADMIN --------
+// -------- DOKTER --------
 Route::get('/admin', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard')->middleware('auth', 'role:admin');
@@ -42,13 +42,21 @@ Route::get('/admin/pasien/edit/{id}', [AdminController::class, 'pasienEdit'])->n
 Route::put('/admin/pasien/update/{id}', [AdminController::class, 'pasienUpdate'])->name('admin.pasien.update')->middleware('auth', 'role:admin');
 Route::delete('/admin/pasien/delete/{id}', [AdminController::class, 'pasienDestroy'])->name('admin.pasien.delete')->middleware('auth', 'role:admin');
 
-// -------- DOKTER --------
+// -------- POLI --------
 Route::get('/admin/poli', [AdminController::class, 'poliIndex'])->name('admin.poli')->middleware('auth', 'role:admin');
 Route::get('/admin/poli/create', [AdminController::class, 'poliCreate'])->name('admin.poli.create')->middleware('auth', 'role:admin');
 Route::post('/admin/poli/store', [AdminController::class, 'poliStore'])->name('admin.poli.store')->middleware('auth', 'role:admin');
 Route::get('/admin/poli/edit/{id}', [AdminController::class, 'poliEdit'])->name('admin.poli.edit')->middleware('auth', 'role:admin');
 Route::put('/admin/poli/update/{id}', [AdminController::class, 'poliUpdate'])->name('admin.poli.update')->middleware('auth', 'role:admin');
 Route::delete('/admin/poli/delete/{id}', [AdminController::class, 'poliDestroy'])->name('admin.poli.delete')->middleware('auth', 'role:admin');
+
+// -------- OBAT --------
+Route::get('/admin/obat', [AdminController::class, 'obatIndex'])->name('admin.obat')->middleware('auth', 'role:admin');
+Route::get('/admin/obat/create', [AdminController::class, 'obatCreate'])->name('admin.obat.create')->middleware('auth', 'role:admin');
+Route::post('/admin/obat/store', [AdminController::class, 'obatStore'])->name('admin.obat.store')->middleware('auth', 'role:admin');
+Route::get('/admin/obat/edit/{id}', [AdminController::class, 'obatEdit'])->name('admin.obat.edit')->middleware('auth', 'role:admin');
+Route::put('/admin/obat/update/{id}', [AdminController::class, 'obatUpdate'])->name('admin.obat.update')->middleware('auth', 'role:admin');
+Route::delete('/admin/obat/delete/{id}', [AdminController::class, 'obatDestroy'])->name('admin.obat.delete')->middleware('auth', 'role:admin');
 
 Route::middleware(['auth', 'role:pasien'])->group(function () {
     Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.dashboard');
