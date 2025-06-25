@@ -8,13 +8,13 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column">
         <li class="nav-item">
-          <a href="{{ route('pasien.dashboard') }}" class="nav-link {{ request()->routeIs('pasien.dashboard') ? 'active' : '' }}">
+          <a href="{{ route('dokter.dashboard') }}" class="nav-link {{ request()->routeIs('pasien.dashboard') ? 'active' : '' }}">
             <i class="nav-icon fas fa-house-user"></i>
             <p>Dashboard</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('pasien.dashboard') }}" class="nav-link {{ request()->routeIs('pasien.dashboard') ? 'active' : '' }}">
+          <a href="{{ route('dokter.profil.edit') }}" class="nav-link {{ request()->routeIs('dokter.profil.edit') ? 'active' : '' }}">
             <i class="nav-icon fas fa-house-user"></i>
             <p>Edit Profile</p>
           </a>

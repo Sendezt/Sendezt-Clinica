@@ -7,6 +7,7 @@ use App\Http\Controllers\PasienController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JadwalPeriksaController;
 use App\Http\Controllers\PeriksaController;
+use App\Http\Controllers\ProfileController;
 
 // ===================
 // 🧑‍⚕️ AUTHENTICATION
@@ -73,4 +74,8 @@ Route::middleware(['auth', 'role:pasien'])->group(function () {
 // ===================
 Route::middleware(['auth', 'role:dokter'])->group(function () {
     Route::get('/dokter', [DokterController::class, 'index'])->name('dokter.dashboard');
+
+    // Edit Profil Dokter
+    Route::get('/dokter/profil/edit', [ProfileController::class, 'edit'])->name('dokter.profil.edit');
+    Route::put('/dokter/profil/update', [ProfileController::class, 'update'])->name('dokter.profil.update');
 });
