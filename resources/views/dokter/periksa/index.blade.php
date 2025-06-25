@@ -1,11 +1,14 @@
 @extends('layout.header', ['title' => 'Pemeriksaan Pasien'])
 
 @section('content')
-<div class="content-wrapper">
+  <!-- Header -->
   <section class="content-header">
-    <h1>Pemeriksaan Pasien Hari Ini</h1>
+    <div class="container-fluid">
+      <h1>Pemeriksaan Pasien Hari Ini</h1>
+    </div>
   </section>
 
+  <!-- Konten -->
   <section class="content">
     @if(session('success'))
       <div class="alert alert-success">{{ session('success') }}</div>
@@ -35,12 +38,13 @@
                 </td>
               </tr>
             @empty
-              <tr><td colspan="5" class="text-center">Tidak ada pasien hari ini</td></tr>
+              <tr>
+                <td colspan="5" class="text-center">Tidak ada pasien hari ini</td>
+              </tr>
             @endforelse
           </tbody>
         </table>
       </div>
     </div>
   </section>
-</div>
 @endsection

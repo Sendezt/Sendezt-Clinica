@@ -1,11 +1,14 @@
 @extends('layout.header', ['title' => 'Detail Pemeriksaan'])
 
 @section('content')
-<div class="content-wrapper">
+  <!-- Header -->
   <section class="content-header">
-    <h1>Detail Pemeriksaan</h1>
+    <div class="container-fluid">
+      <h1>Detail Pemeriksaan</h1>
+    </div>
   </section>
 
+  <!-- Konten -->
   <section class="content">
     <div class="card">
       <div class="card-body">
@@ -28,5 +31,4 @@
       </div>
     </div>
   </section>
-</div>
 @endsection

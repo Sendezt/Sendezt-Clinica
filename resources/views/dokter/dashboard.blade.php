@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Dashboard Dokter'])
 
 @section('content')
-<div class="content-wrapper">
   <!-- Header -->
   <section class="content-header">
     <div class="container-fluid">
@@ -34,20 +33,19 @@
 
         <!-- Navigasi Fitur -->
         <div class="col-md-6">
-          <a href="{{ route('dokter.dashboard') }}" class="btn btn-primary btn-block">✏️ Perbarui Data Dokter</a>
+          <a href="{{ route('dokter.profil.edit') }}" class="btn btn-primary btn-block">✏️ Perbarui Data Dokter</a>
         </div>
         <div class="col-md-6">
-          <a href="{{ route('dokter.dashboard') }}" class="btn btn-success btn-block">🗓️ Input Jadwal Periksa</a>
+          <a href="{{ route('jadwal.index') }}" class="btn btn-success btn-block">🗓️ Input Jadwal Periksa</a>
         </div>
         <div class="col-md-6 mt-3">
-          <a href="{{ route('dokter.dashboard') }}" class="btn btn-warning btn-block">💊 Periksa Pasien</a>
+          <a href="{{ route('periksa.index') }}" class="btn btn-warning btn-block">💊 Periksa Pasien</a>
         </div>
         <div class="col-md-6 mt-3">
-          <a href="{{ route('dokter.dashboard') }}" class="btn btn-info btn-block">📋 Riwayat Pasien</a>
+          <a href="{{ route('dokter.riwayat') }}" class="btn btn-info btn-block">📋 Riwayat Pasien</a>
         </div>
 
       </div>
     </div>
   </section>
-</div>
 @endsection

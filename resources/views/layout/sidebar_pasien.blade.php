@@ -1,4 +1,4 @@
-<!-- Sidebar Pasien -->
+<!-- Sidebar Dokter -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <a href="{{ route('pasien.dashboard') }}" class="brand-link">
     <span class="brand-text font-weight-light">Pasien</span>

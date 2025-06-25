@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\JadwalPeriksa;
 use App\Models\DaftarPoli;
 use App\Models\Pasien;
+use App\Models\Poli;
 use Illuminate\Support\Facades\Auth;
 
 class PasienController extends Controller
@@ -16,9 +17,13 @@ class PasienController extends Controller
     {
         $user = Auth::user();
         $pasien = Pasien::where('user_id', $user->id)->first();
-        $jadwal = JadwalPeriksa::with('dokter.poli')->get();
 
-        return view('pasien.dashboard', compact('pasien', 'jadwal'));
+        $polis =    Poli::all(); // Ambil semua poli
+        $jadwal = JadwalPeriksa::with('dokter.poli')
+            ->where('is_active', true)
+            ->get();
+
+        return view('pasien.dashboard', compact('pasien', 'polis', 'jadwal'));
     }
 
     public function daftarPoli(Request $request)

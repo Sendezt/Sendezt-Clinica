@@ -86,6 +86,8 @@ Route::middleware(['auth', 'role:dokter'])->group(function () {
     Route::get('/dokter/jadwal/edit/{id}', [JadwalPeriksaController::class, 'edit'])->name('jadwal.edit');
     Route::put('/dokter/jadwal/update/{id}', [JadwalPeriksaController::class, 'update'])->name('jadwal.update');
     Route::delete('/dokter/jadwal/delete/{id}', [JadwalPeriksaController::class, 'destroy'])->name('jadwal.delete');
+    Route::post('/jadwal/{id}/toggle', [JadwalPeriksaController::class, 'toggleStatus'])->name('jadwal.toggle');
+
 
     // Periksa Pasien
     Route::get('/dokter/periksa', [PeriksaController::class, 'index'])->name('periksa.index');

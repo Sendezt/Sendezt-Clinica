@@ -15,6 +15,7 @@ class JadwalPeriksa extends Model
         'jam_mulai',
         'jam_selesai',
         'status',
+        'is_active',
     ];
 
     public function dokter()

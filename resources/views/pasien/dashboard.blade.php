@@ -27,7 +27,7 @@
               <select name="jadwal_periksa_id" id="jadwal_periksa_id" class="form-control" required>
                 @foreach ($jadwal as $j)
                   <option value="{{ $j->id }}">
-                    {{ $j->dokter->nama }} - {{ $j->dokter->poli->nama }} ({{ $j->hari }}, {{ $j->jam_mulai }} - {{ $j->jam_selesai }})
+                    {{ $j->dokter->poli->nama }} ({{ $j->hari }}, {{ $j->jam_mulai }} - {{ $j->jam_selesai }})
                   </option>
                 @endforeach
               </select>

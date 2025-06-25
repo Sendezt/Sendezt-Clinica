@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Form Pemeriksaan'])
 
 @section('content')
-<div class="content-wrapper">
   <section class="content-header">
     <h1>Form Pemeriksaan</h1>
   </section>
@@ -42,5 +41,4 @@
       </div>
     </div>
   </section>
-</div>
 @endsection
