@@ -7,6 +7,7 @@ use App\Http\Controllers\PasienController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JadwalPeriksaController;
+use App\Http\Controllers\PeriksaController;
 
 // ===================
 // 🧑‍⚕️ AUTHENTICATION
@@ -85,4 +86,9 @@ Route::middleware(['auth', 'role:dokter'])->group(function () {
     Route::get('/dokter/jadwal/edit/{id}', [JadwalPeriksaController::class, 'edit'])->name('jadwal.edit');
     Route::put('/dokter/jadwal/update/{id}', [JadwalPeriksaController::class, 'update'])->name('jadwal.update');
     Route::delete('/dokter/jadwal/delete/{id}', [JadwalPeriksaController::class, 'destroy'])->name('jadwal.delete');
+
+    // Periksa Pasien
+    Route::get('/dokter/periksa', [PeriksaController::class, 'index'])->name('periksa.index');
+    Route::get('/dokter/periksa/{id}', [PeriksaController::class, 'form'])->name('periksa.form');
+    Route::post('/dokter/periksa/store', [PeriksaController::class, 'store'])->name('periksa.store');
 });

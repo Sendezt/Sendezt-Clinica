@@ -10,7 +10,7 @@ class Poli extends Model
     use HasFactory;
     //Relasi Tabel Poli
     protected $fillable = [
-        'nama_poli',
+        'nama',
         'keterangan',
     ];
 

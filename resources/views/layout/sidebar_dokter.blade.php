@@ -26,6 +26,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('periksa.index') }}" class="nav-link {{ request()->routeIs('periksa.index') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-house-user"></i>
+            <p>Periksa</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="nav-icon fas fa-sign-out-alt"></i><p>Logout</p>
           </a>
