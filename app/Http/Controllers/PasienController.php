@@ -41,4 +41,10 @@ class PasienController extends Controller
 
         return redirect()->route('pasien.dashboard')->with('success', 'Berhasil daftar ke poli.');
     }
+
+    public function riwayat($id)
+    {
+        $pasien = Pasien::with(['daftarPolis.periksa.detailPeriksas.obat'])->findOrFail($id);
+        return view('dokter.pasien.riwayat', compact('pasien'));
+    }
 }

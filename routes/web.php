@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\JadwalPeriksaController;
+use App\Http\Controllers\PeriksaController;
 
 // ===================
 // 🧑‍⚕️ AUTHENTICATION
@@ -58,7 +60,17 @@ Route::get('/admin/obat/edit/{id}', [AdminController::class, 'obatEdit'])->name(
 Route::put('/admin/obat/update/{id}', [AdminController::class, 'obatUpdate'])->name('admin.obat.update')->middleware('auth', 'role:admin');
 Route::delete('/admin/obat/delete/{id}', [AdminController::class, 'obatDestroy'])->name('admin.obat.delete')->middleware('auth', 'role:admin');
 
+// ===================
+// Pasien Routes
+// ===================
 Route::middleware(['auth', 'role:pasien'])->group(function () {
     Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.dashboard');
     Route::post('/pasien/daftar-poli', [PasienController::class, 'daftarPoli'])->name('pasien.daftar_poli');
+});
+
+// ===================
+// Dokter Routes
+// ===================
+Route::middleware(['auth', 'role:dokter'])->group(function () {
+    Route::get('/dokter', [DokterController::class, 'index'])->name('dokter.dashboard');
 });
