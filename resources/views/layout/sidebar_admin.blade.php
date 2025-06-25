@@ -27,6 +27,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('admin.poli') }}" class="nav-link {{ request()->routeIs('admin.poli') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-user-md"></i>
+            <p>Poli</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="nav-icon fas fa-sign-out-alt"></i><p>Logout</p>
           </a>

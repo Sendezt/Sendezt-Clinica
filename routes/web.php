@@ -42,6 +42,14 @@ Route::get('/admin/pasien/edit/{id}', [AdminController::class, 'pasienEdit'])->n
 Route::put('/admin/pasien/update/{id}', [AdminController::class, 'pasienUpdate'])->name('admin.pasien.update')->middleware('auth', 'role:admin');
 Route::delete('/admin/pasien/delete/{id}', [AdminController::class, 'pasienDestroy'])->name('admin.pasien.delete')->middleware('auth', 'role:admin');
 
+// -------- DOKTER --------
+Route::get('/admin/poli', [AdminController::class, 'poliIndex'])->name('admin.poli')->middleware('auth', 'role:admin');
+Route::get('/admin/poli/create', [AdminController::class, 'poliCreate'])->name('admin.poli.create')->middleware('auth', 'role:admin');
+Route::post('/admin/poli/store', [AdminController::class, 'poliStore'])->name('admin.poli.store')->middleware('auth', 'role:admin');
+Route::get('/admin/poli/edit/{id}', [AdminController::class, 'poliEdit'])->name('admin.poli.edit')->middleware('auth', 'role:admin');
+Route::put('/admin/poli/update/{id}', [AdminController::class, 'poliUpdate'])->name('admin.poli.update')->middleware('auth', 'role:admin');
+Route::delete('/admin/poli/delete/{id}', [AdminController::class, 'poliDestroy'])->name('admin.poli.delete')->middleware('auth', 'role:admin');
+
 Route::middleware(['auth', 'role:pasien'])->group(function () {
     Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.dashboard');
     Route::post('/pasien/daftar-poli', [PasienController::class, 'daftarPoli'])->name('pasien.daftar_poli');

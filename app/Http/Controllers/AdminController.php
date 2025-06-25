@@ -193,4 +193,55 @@ class AdminController extends Controller
 
         return redirect()->route('admin.dokter')->with('success', 'Dokter berhasil dihapus.');
     }
+
+    // ================= POLI ================= //
+    public function poliIndex()
+    {
+        $polis = Poli::all();
+        return view('admin.poli.index', compact('polis'));
+    }
+
+    public function poliCreate()
+    {
+        return view('admin.poli.create');
+    }
+
+    public function poliStore(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|unique:polis,nama',
+            'keterangan' => 'required',
+        ]);
+
+        Poli::create($request->only('nama', 'keterangan'));
+
+        return redirect()->route('admin.poli')->with('success', 'Poli berhasil ditambahkan.');
+    }
+
+    public function poliEdit($id)
+    {
+        $poli = Poli::findOrFail($id);
+        return view('admin.poli.edit', compact('poli'));
+    }
+
+    public function poliUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|unique:polis,nama,' . $id,
+            'keterangan' => 'required',
+        ]);
+
+        $poli = Poli::findOrFail($id);
+        $poli->update($request->only('nama', 'keterangan'));
+
+        return redirect()->route('admin.poli')->with('success', 'Poli berhasil diupdate.');
+    }
+
+    public function poliDestroy($id)
+    {
+        $poli = Poli::findOrFail($id);
+        $poli->delete();
+
+        return redirect()->route('admin.poli')->with('success', 'Poli berhasil dihapus.');
+    }
 }
