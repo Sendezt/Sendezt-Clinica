@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Edit Dokter'])
 
 @section('content')
-<div class="content-wrapper">
   <section class="content pt-3">
     <div class="container-fluid">
       <form action="{{ route('admin.dokter.update', $dokter->id) }}" method="POST">
@@ -32,5 +31,4 @@
       </form>
     </div>
   </section>
-</div>
 @endsection

@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Tambah Dokter'])
 
 @section('content')
-<div class="content-wrapper">
   <section class="content pt-3">
     <div class="container-fluid">
       <h4>Tambah Dokter</h4>
@@ -78,5 +77,4 @@
       </form>
     </div>
   </section>
-</div>
 @endsection

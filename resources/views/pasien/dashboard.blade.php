@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Dashboard Pasien'])
 
 @section('content')
-<div class="content-wrapper">
   <div class="content-header">
     <div class="container-fluid">
       <h3>Selamat Datang, {{ $pasien->nama }}</h3>
@@ -45,5 +44,4 @@
 
     </div>
   </section>
-</div>
 @endsection

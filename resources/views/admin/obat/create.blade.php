@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Tambah Obat'])
 
 @section('content')
-<div class="content-wrapper">
   <section class="content-header">
     <h1>Tambah Obat</h1>
   </section>
@@ -25,5 +24,4 @@
       <a href="{{ route('admin.obat') }}" class="btn btn-secondary">Kembali</a>
     </form>
   </section>
-</div>
 @endsection

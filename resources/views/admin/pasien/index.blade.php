@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Kelola Pasien'])
 
 @section('content')
-<div class="content-wrapper">
   <section class="content pt-3">
     <div class="container-fluid">
       <h4>Data Pasien</h4>
@@ -59,5 +58,4 @@
 
     </div>
   </section>
-</div>
 @endsection

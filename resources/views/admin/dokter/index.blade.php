@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Kelola Dokter'])
 
 @section('content')
-<div class="content-wrapper">
   <section class="content pt-3">
     <div class="container-fluid">
       <a href="{{ route('admin.dokter.create') }}" class="btn btn-primary mb-3">Tambah Dokter</a>
@@ -41,5 +40,4 @@
       </table>
     </div>
   </section>
-</div>
 @endsection

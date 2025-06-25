@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Edit Poli'])
 
 @section('content')
-<div class="content-wrapper">
   <section class="content-header">
     <h1>Edit Poli</h1>
   </section>
@@ -22,5 +21,4 @@
       <a href="{{ route('admin.poli') }}" class="btn btn-secondary">Batal</a>
     </form>
   </section>
-</div>
 @endsection

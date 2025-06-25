@@ -1,7 +1,6 @@
 @extends('layout.header', ['title' => 'Dashboard Admin'])
 
 @section('content')
-<div class="content-wrapper">
 
   <!-- Content Header -->
   <div class="content-header">
@@ -51,5 +50,4 @@
       </div>
     </div>
   </section>
-</div>
 @endsection
