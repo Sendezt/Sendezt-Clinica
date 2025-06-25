@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('periksas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_daftar_polis')->constrained('daftar_polis')->onDelete('cascade');
+            $table->foreignId('id_daftar_poli')->constrained('daftar_polis')->onDelete('cascade');
             $table->date('tanggal_periksa');
             $table->text('catatan');
             $table->decimal('biaya_periksa', 10, 2);

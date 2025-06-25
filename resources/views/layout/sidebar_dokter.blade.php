@@ -32,6 +32,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('dokter.riwayat') }}" class="nav-link {{ request()->routeIs('dokter.riwayat') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-house-user"></i>
+            <p>Riwayat</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="nav-icon fas fa-sign-out-alt"></i><p>Logout</p>
           </a>

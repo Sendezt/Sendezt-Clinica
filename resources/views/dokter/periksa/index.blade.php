@@ -14,7 +14,7 @@
     <div class="card">
       <div class="card-body">
         <table class="table table-bordered">
-          <thead class="thead-light">
+          <thead>
             <tr>
               <th>No</th>
               <th>Nama Pasien</th>
@@ -27,13 +27,11 @@
             @forelse($daftarPasien as $poli)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>
-                  {{ optional($poli->pasien)->nama ?? optional($poli->pasien->user)->name ?? '-' }}
-                </td>
+                <td>{{ $poli->pasien->nama }}</td>
                 <td>{{ $poli->no_antrian }}</td>
                 <td>{{ $poli->keluhan }}</td>
                 <td>
-                  <a href="{{ route('periksa.form', $poli->id) }}" class="btn btn-primary btn-sm">Periksa</a>
+                  <a href="{{ route('periksa.show', $poli->id) }}" class="btn btn-primary btn-sm">Periksa</a>
                 </td>
               </tr>
             @empty
